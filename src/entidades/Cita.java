@@ -14,16 +14,18 @@ public class Cita {
     private String motivo;
     private String sintomas;
     private Paciente paciente;
+    private Doctor doctor;
     
     public Cita() {
     }
 
-    public Cita(String fecha, String hora, String motivo, String sintomas, Paciente paciente) {
+    public Cita(String fecha, String hora, String motivo, String sintomas, Paciente paciente,Doctor doctor) {
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
         this.sintomas = sintomas;
         this.paciente = paciente;
+        this.doctor = doctor;
     }
     
     public void setFecha(String fecha){
@@ -65,6 +67,16 @@ public class Cita {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+    
+    
     
     
     

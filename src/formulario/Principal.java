@@ -5,14 +5,12 @@
 package formulario;
 
 import ArbolBinario.ArbolBinario;
-import Conexion.Metodos;
 import Conexion.ReportClass;
 import colas.Cola;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import datos.Ordenar;
-import entidades.Cita;
-import entidades.Paciente;
+import entidades.*;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -30,6 +28,7 @@ public class Principal extends javax.swing.JFrame {
     public static Cola cola;
     public static ListaEnlazada lista;
     public static ArbolBinario arbol;
+    private Doctor doctor;
     int color=1;
     /**
      * Creates new form Principal
@@ -49,10 +48,10 @@ public class Principal extends javax.swing.JFrame {
                  "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
         Paciente p3 = new Paciente("Michel Alexnader", "CACA Camacho", "72697003", "928469798",
                  "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
-        Cita c = new Cita("Lunes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p);
-        Cita cd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p1);
-        Cita csd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p2);
-        Cita ck = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p3);
+        Cita c = new Cita("Lunes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p,doctor);
+        Cita cd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p1,doctor);
+        Cita csd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p2,doctor);
+        Cita ck = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p3,doctor);
         //cola.encolar(c);
         //cola.encolar(cd);
         

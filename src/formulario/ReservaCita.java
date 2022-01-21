@@ -5,15 +5,15 @@
 package formulario;
 
 import Conexion.Metodos;
-import colas.Cola;
+import com.mxrck.autocompleter.TextAutoCompleter;
+import datos.DatosDoctor;
 import datos.Ordenar;
-import entidades.Cita;
-import entidades.Paciente;
-import java.text.DateFormat;
+import entidades.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import listaEnlazada.ListaEnlazada;
 
 /**
  *
@@ -36,7 +36,13 @@ public class ReservaCita extends javax.swing.JFrame {
     public static String hora = "";
     private String motivo;
     private String sintomas;
+    private Doctor doctor;
     public static int pos = -1;
+    private Especialista especialista;
+    private TextAutoCompleter autoCompleter;
+    private Enfermeda enfermedades = new Enfermeda();
+    private String name;
+    private DatosDoctor data;
 
     /**
      * Creates new form ReservaCita
@@ -44,8 +50,94 @@ public class ReservaCita extends javax.swing.JFrame {
     public ReservaCita() {
         initComponents();
         setLocationRelativeTo(null);
+        autoCompleter = new TextAutoCompleter(txtMotivo);
+        data  =new DatosDoctor();
+        llenar();
 
     }
+
+    public void llenar() {
+        for (int i = 0; i < enfermedades.getGeneral().size(); i++) {
+            autoCompleter.addItem(enfermedades.getGeneral().get(i));
+        }
+    }
+
+    public String espe(String enfermedad) {
+        int pos = -1;
+        if (enfermedades.getANEGTESIOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.ANEGTESIOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getCARDIOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.CARDIOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getCIRUGIA().contains(enfermedad)) {
+            setEspecialista(especialista.CIRUGIA);
+            pos = 1;
+        }
+        if (enfermedades.getDERMATOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.DERMATOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getENDOCRINOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.ENDOCRINOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getGASTROENTEROLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.GASTROENTEROLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getGINECO_OBSTETRICIA().contains(enfermedad)) {
+            setEspecialista(especialista.GINECO_OBSTETRICIA);
+            pos = 1;
+        }
+        if (enfermedades.getINFECTOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.INFECTOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getNEFROLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.NEFROLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getNEUMOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.NEUMOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getOFTALMOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.OFTALMOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getOTORRINOLARINGOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.OTORRINOLARINGOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getPEDRIATRIA().contains(enfermedad)) {
+            setEspecialista(especialista.PEDIATRIA);
+            pos = 1;
+        }
+        if (enfermedades.getPSIQUIATRIA().contains(enfermedad)) {
+            setEspecialista(especialista.PSIQUIATRIA);
+            pos = 1;
+        }
+        if (enfermedades.getRADIOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.RADIOLOGIA);
+            pos = 1;
+        }
+        if (enfermedades.getOFTALMOLOGIA().contains(enfermedad)) {
+            setEspecialista(especialista.ANEGTESIOLOGIA);
+            pos = 1;
+        }
+
+        if (pos != -1) {
+            name = especialista.name();
+        } else {
+            name = "No hay especialista";
+        }
+
+        return name;
+    }
+    
 
     public boolean validar() {
         boolean estado = false;
@@ -59,8 +151,8 @@ public class ReservaCita extends javax.swing.JFrame {
                     || txtMotivo.getText().trim().equals("") || fechaNacimiento.trim().equals("")
                     || txtNombre.getText().trim().equals("") || txtSintomas.getText().trim().equals("")
                     || txtTel.getText().trim().equals("") || sexo.trim().equals("")) {
-                
-            }else{
+
+            } else {
                 estado = true;
             }
         } catch (Exception e) {
@@ -68,6 +160,14 @@ public class ReservaCita extends javax.swing.JFrame {
         }
 
         return estado;
+    }
+
+    private void setEspecialista(Especialista especialista) {
+        this.especialista = especialista;
+    }
+
+    private Especialista getEspecialista() {
+        return this.especialista;
     }
 
     /**
@@ -111,14 +211,37 @@ public class ReservaCita extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel16 = new javax.swing.JLabel();
+        txtEspecialiesta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel1MouseMoved(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -153,11 +276,11 @@ public class ReservaCita extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setText("motivo");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Sintomas");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 60, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 60, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Teléfono");
@@ -194,12 +317,36 @@ public class ReservaCita extends javax.swing.JFrame {
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 150, -1));
 
         txtHora.setEnabled(false);
-        jPanel1.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 120, -1));
-        jPanel1.add(txtMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 120, -1));
-        jPanel1.add(txtSintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 120, -1));
+        jPanel1.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 140, -1));
+
+        txtMotivo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                txtMotivoMouseMoved(evt);
+            }
+        });
+        txtMotivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMotivoMouseClicked(evt);
+            }
+        });
+        txtMotivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMotivoActionPerformed(evt);
+            }
+        });
+        txtMotivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMotivoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMotivoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 140, -1));
+        jPanel1.add(txtSintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 140, -1));
 
         txtDia.setEnabled(false);
-        jPanel1.add(txtDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 120, -1));
+        jPanel1.add(txtDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 140, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cita.png"))); // NOI18N
@@ -209,7 +356,7 @@ public class ReservaCita extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, -1, -1));
 
         txtFechaNacimiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -239,6 +386,11 @@ public class ReservaCita extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setText("Especialista");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+        jPanel1.add(txtEspecialiesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,8 +423,9 @@ public class ReservaCita extends javax.swing.JFrame {
             fecha = txtDia.getText();
             hora = txtHora.getText();
             sintomas = txtSintomas.getText();
+            doctor = data.getDoctores(especialista);
             paciente = new Paciente(nombre, apellido, dni, telefono, direccion, email, fechaNacimiento, sexo);
-            cita = new Cita(fecha, hora, motivo, sintomas, paciente);
+            cita = new Cita(fecha, hora, motivo, sintomas, paciente, doctor);
             //Principal.cola.encolar(cita);
             Ordenar o = new Ordenar(cita, pos);
             Principal.arbol.insertar(o);
@@ -304,6 +457,60 @@ public class ReservaCita extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtFechaNacimientoMouseClicked
 
+    private void txtMotivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMotivoKeyTyped
+        txtMotivo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (txtMotivo.getText().trim().equals("")) {
+                    txtEspecialiesta.setText("Na");
+                } else {
+                    txtEspecialiesta.setText(espe(txtMotivo.getText().trim()));
+                }
+            }
+        });
+    }//GEN-LAST:event_txtMotivoKeyTyped
+
+    private void txtMotivoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMotivoMouseMoved
+
+    }//GEN-LAST:event_txtMotivoMouseMoved
+
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+    private void txtMotivoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMotivoKeyPressed
+
+    }//GEN-LAST:event_txtMotivoKeyPressed
+
+    private void txtMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMotivoActionPerformed
+        
+    }//GEN-LAST:event_txtMotivoActionPerformed
+
+    private void txtMotivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMotivoMouseClicked
+
+    }//GEN-LAST:event_txtMotivoMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        txtHora.setText(hora);
+        txtDia.setText(fecha);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+
+    }//GEN-LAST:event_formMouseDragged
+
+    private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
+       if (txtMotivo.getText().trim().equals("")) {
+            txtEspecialiesta.setText("Na");
+        } else {
+            txtEspecialiesta.setText(espe(txtMotivo.getText().trim()));
+        }
+    }//GEN-LAST:event_jPanel1MouseMoved
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +526,7 @@ public class ReservaCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -335,6 +543,7 @@ public class ReservaCita extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEspecialiesta;
     private com.toedter.calendar.JDateChooser txtFechaNacimiento;
     private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtMotivo;
