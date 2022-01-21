@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="practica_paises" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BOLETAS\Conexion_citas.xml"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<style name="Style1"/>
+	<subDataset name="Nueva" uuid="d24a6fbf-c231-468e-9e89-d4695f1d8dd8">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion.xml"/>
+		<queryString language="SQL">
+			<![CDATA[select  * from producto]]>
+		</queryString>
+		<field name="idproducto" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="idproducto"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+		</field>
+		<field name="producto" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="producto"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+		</field>
+		<field name="precio" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="precio"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+		</field>
+		<group name="idproducto">
+			<groupExpression><![CDATA[$F{idproducto}]]></groupExpression>
+		</group>
+		<group name="producto">
+			<groupExpression><![CDATA[$F{producto}]]></groupExpression>
+		</group>
+		<group name="precio">
+			<groupExpression><![CDATA[$F{precio}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="bdPaciente" uuid="545d5ee1-bf2e-4139-bb00-50a4c32dce94">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BOLETAS\Conexion_citas.xml"/>
+		<queryString language="SQL">
+			<![CDATA[select * from paciente]]>
+		</queryString>
+		<field name="id_paciente" class="java.math.BigInteger">
+			<property name="com.jaspersoft.studio.field.label" value="id_paciente"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="fecha" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="hora" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="hora"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="motivo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="motivo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="sintomas" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="sintomas"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="apellidos" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="apellidos"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="dni" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="dni"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="telefono" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="direccion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="email" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="email"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="fecha_nacimiento" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="fecha_nacimiento"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+		<field name="sexo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="sexo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT * FROM paciente ]]>
+	</queryString>
+	<field name="fecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="hora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="motivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="motivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="sintomas" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sintomas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="fecha_nacimiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fecha_nacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="166" splitType="Stretch">
+			<image onErrorType="Icon">
+				<reportElement x="0" y="0" width="150" height="126" uuid="1c003177-754c-448f-8ce1-16868856f545"/>
+				<imageExpression><![CDATA["src/reportes/alimentos.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="160" y="0" width="470" height="62" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[RESERVA DE CITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Detail" positionType="FixRelativeToBottom" x="188" y="60" width="420" height="30" uuid="f6a78448-8260-4445-a9e0-e3fb53b080d9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="23" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOSPITAL REGIONAL DE TRUJILLO]]></text>
+			</staticText>
+			<image onErrorType="Icon">
+				<reportElement positionType="Float" x="655" y="0" width="147" height="136" uuid="4aa6f4d1-27dc-4b34-9227-59e19ce2c959"/>
+				<imageExpression><![CDATA["src/reportes/coffee_stain.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Detail" positionType="FixRelativeToBottom" x="331" y="100" width="120" height="30" uuid="47ae44f0-61f7-4d91-9a94-a008bef484d5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOLETA N° ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnFooter>
+		<band height="351" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Transparent" x="480" y="80" width="130" height="30" forecolor="#ED332F" backcolor="#FFFFFF" uuid="4c7a8729-4632-4a22-a276-1a5db6e77afd"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIA : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="18" y="196" width="162" height="30" forecolor="#FA0C07" uuid="75ac5f0e-cb0e-4dad-a5d9-f9a49caad862"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="20" y="234" width="160" height="30" forecolor="#FA0C07" uuid="464aabf8-9952-4fc8-b2d4-ff842af2acab"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Title" x="189" y="234" width="262" height="30" forecolor="#080808" uuid="b8a1fa06-0864-4e16-a25c-0aa4530be36c"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" x="189" y="196" width="262" height="30" forecolor="#080808" uuid="c52be7ce-00d0-413d-b419-98ea3a6ef800"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" x="620" y="80" width="153" height="30" forecolor="#080808" uuid="15109639-2ffd-4bcc-a842-6e32592cb447"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="480" y="220" width="130" height="30" forecolor="#ED332F" uuid="4ef3bf35-2a92-4f50-ae72-d246b79d1143"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SINTOMAS :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Title" x="622" y="220" width="166" height="70" forecolor="#080808" uuid="b5d9ef1c-2e7a-4fce-9137-d2723518c744"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sintomas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" x="620" y="170" width="168" height="30" forecolor="#080808" uuid="770a9b7b-b5e5-464c-b389-3dfdc20a9c20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="480" y="170" width="130" height="30" forecolor="#ED332F" uuid="9ebc4eb5-cc99-45ce-bde6-7c1dbea6ff19"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOTIVO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="20" y="307" width="170" height="30" forecolor="#FA0C07" uuid="425c487d-1216-424a-aa6c-50882a0afb6b"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NACIMIENTO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="18" y="271" width="162" height="30" forecolor="#FA0C07" uuid="c45e9427-1c0f-4060-8f1c-3e174c2c1d85"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Title" x="189" y="271" width="262" height="30" forecolor="#080808" uuid="a3f8b000-8684-49f0-8226-679672b36174"/>
+				<textElement>
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" x="189" y="307" width="262" height="30" forecolor="#080808" uuid="8a846ffb-5314-4e20-990f-30e6928d6b42"/>
+				<textElement>
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" mode="Transparent" x="20" y="84" width="160" height="30" forecolor="#FA0C07" backcolor="#FFFFFF" uuid="7ca0ecdb-5c22-4487-abd0-35caec6913b5"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRES : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="18" y="124" width="162" height="30" forecolor="#FA0C07" uuid="b66b711b-b2bc-469c-9c80-7ab9d5b9635e"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="20" y="160" width="160" height="30" forecolor="#FA0C07" uuid="1d137968-f405-4130-8359-d40c89e6f342"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° DNI : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Title" x="190" y="127" width="240" height="25" forecolor="#080808" uuid="cc1d0a6a-02ec-447c-8055-528ca1bc346a"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" x="190" y="84" width="240" height="25" forecolor="#080808" uuid="d42d40bb-710b-494b-9ce7-8711926ebc2b"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="460" y="31" width="293" height="30" forecolor="#736343" backcolor="#FFFFFF" uuid="fac7c41a-47b4-459b-a379-b4067a4f99c9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE LA CITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" mode="Transparent" x="480" y="123" width="130" height="30" forecolor="#ED332F" backcolor="#FFFFFF" uuid="2d168c15-00bb-45d7-901a-356fbd04d3b7"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Title" x="620" y="120" width="153" height="30" forecolor="#080808" uuid="6c008a10-664f-4ce4-a22f-6efa19b8babf"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="19" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="31" width="400" height="30" forecolor="#736343" backcolor="#FFFFFF" uuid="3d962dfd-4a6a-415e-a740-ae116dbf57ef"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL PACIENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="191" y="160" width="242" height="30" uuid="43791eba-9e47-4c94-8208-12f118b0a4a8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="37" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="13" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="5d8169bd-4a75-48c8-8a68-6d3ad5ba9402"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="e5e27efa-b599-499b-9ca3-848cb511cb7b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="fbce24bb-3cb1-44a3-8eec-8c067ddbe5b5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

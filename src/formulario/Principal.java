@@ -4,10 +4,19 @@
  */
 package formulario;
 
+import ArbolBinario.ArbolBinario;
+import Conexion.Metodos;
+import Conexion.ReportClass;
 import colas.Cola;
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import datos.Ordenar;
 import entidades.Cita;
 import entidades.Paciente;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import listaEnlazada.ListaEnlazada;
 import pilas.Pila;
 
@@ -16,9 +25,12 @@ import pilas.Pila;
  * @author HP
  */
 public class Principal extends javax.swing.JFrame {
-    private Pila pila;
+
+    public static Pila pila;
     public static Cola cola;
-    private ListaEnlazada lista;
+    public static ListaEnlazada lista;
+    public static ArbolBinario arbol;
+    int color=1;
     /**
      * Creates new form Principal
      */
@@ -28,15 +40,70 @@ public class Principal extends javax.swing.JFrame {
         pila = new Pila();
         cola = new Cola();
         lista = new ListaEnlazada();
-        Paciente p = new Paciente("Jonathan", "Mostacero Camacho", "72697001", "928469798"
-                , "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
-        Paciente p1 = new Paciente("Kathya", " Perez Camacho", "72697001", "928469798"
-                , "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        arbol = new ArbolBinario();
+        Paciente p = new Paciente("Jonathan Smith", "Mostacero Camacho", "72697001", "928469798",
+                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        Paciente p1 = new Paciente("Roxana Maria", "Perez Camacho", "72697002", "928469798",
+                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        Paciente p2 = new Paciente("Jose Benavives", "CACA Camacho", "72697000", "928469798",
+                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        Paciente p3 = new Paciente("Michel Alexnader", "CACA Camacho", "72697003", "928469798",
+                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
         Cita c = new Cita("Lunes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p);
-       Cita cd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p1);
-        cola.encolar(c);
-        cola.encolar(cd);
+        Cita cd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p1);
+        Cita csd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p2);
+        Cita ck = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p3);
+        //cola.encolar(c);
+        //cola.encolar(cd);
+        
+        lista.agregarCitaFinal(cd);
+        lista.agregarCitaFinal(c);
+        lista.agregarCitaFinal(csd);
+        lista.agregarCitaFinal(ck);
+        Ordenar oe = new Ordenar(cd, 14);
+        Ordenar od = new Ordenar(cd, 2);
+        Ordenar d= new Ordenar(c, 1);
+        Ordenar odee = new Ordenar(cd, 13);
+//        System.out.println(Metodos.insertarCita(cd));
+//        System.out.println(Metodos.insertarCita(c));
+//        System.out.println(Metodos.insertarCita(ck));
+//        System.out.println(Metodos.insertarCita(csd));
+        arbol.insertar(oe);
+        arbol.insertar(od);
+        arbol.insertar(d);
+        arbol.insertar(odee);
+        arbol.inOrden();
+        cola = Principal.arbol.colas();
     }
+    
+    public void CambiarImagen(int nu){
+        try {
+            
+             ImageIcon icon=null;
+        if(nu!=0){
+            
+            icon = new ImageIcon("src/img/129834.png");
+            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
+                    jMenuItem6.setText("Cambiar a Oscuro");
+                SwingUtilities.updateComponentTreeUI(this);
+                this.pack();
+        }else{
+            icon = new ImageIcon("src/img/img.png");
+            jMenuItem6.setText("Cambiar a Blanco");
+             javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
+                SwingUtilities.updateComponentTreeUI(this);
+                this.pack();
+            
+        }
+        jMenuItem6.setIcon(icon);
+            
+        } catch (UnsupportedLookAndFeelException e) {
+            
+        }
+
+      
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,31 +115,59 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo2.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         jMenu1.setText("Ayuda");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem5.setText("Ayuda");
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/129834.png"))); // NOI18N
+        jMenuItem6.setText("Cambiar a Oscuro");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText(" Mantenimiento");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem1.setText("Reservar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,16 +176,32 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("ListarReservas");
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem2.setText("Listar Reservas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("Aplicar");
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem3.setText("Atender Citas");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItem4.setText("Almacen Registro");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
@@ -114,13 +225,41 @@ public class Principal extends javax.swing.JFrame {
         new ReservaCita().setVisible(true);
         ReservaCita.fecha = "";
         ReservaCita.hora = "";
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       new FrmEmpezar().setVisible(true);
-      
+        if(cola!=null){
+            new FrmEmpezar().setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"No hay registros de citas","Mensaje",2);
+        }
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new FrmListado().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        
+        try {
+             ReportClass.generarReporte("cita");
+
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+
+        color++;
+        if(color%2==0){
+            CambiarImagen(0);
+        }else{
+            CambiarImagen(1);
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,7 +270,7 @@ public class Principal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-         try {
+        try {
             javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (Exception ex) {
             System.out.println(ex);
@@ -147,12 +286,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
