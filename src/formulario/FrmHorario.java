@@ -75,7 +75,6 @@ public final class FrmHorario extends javax.swing.JFrame {
                 ReservaCita.hora = b.getText();
                 ReservaCita.pos=pos;
                 dispose();
-                //new ReservaCita(lista, cola).setVisible(true);
                 
             }
         }
@@ -89,10 +88,9 @@ public final class FrmHorario extends javax.swing.JFrame {
             if (cola.buscar(i).getFecha().equals("Lunes")) { 
                 for (int j = 0; j < 3; j++) {
                     if (cola.buscar(i).getHora().equals(botones.get(j).getText())) {
-                       //botones.get(j).setEnabled(false); 
                        reservas.set(j, 1);
                     } else {
-                       //botones.get(j).setBackground(Color.GREEN); 
+
                         cont++;
                     }
                 }
@@ -101,10 +99,8 @@ public final class FrmHorario extends javax.swing.JFrame {
             if (cola.buscar(i).getFecha().equals("Martes")) {
                 for (int j = 3; j < 6; j++) {
                     if (cola.buscar(i).getHora().equals(botones.get(j).getText())) {
-                       //botones.get(j).setEnabled(false); 
                        reservas.set(j, 1);
                     } else {
-                       //botones.get(j).setBackground(Color.GREEN); 
                         cont++;
                     }
                 }
@@ -112,10 +108,8 @@ public final class FrmHorario extends javax.swing.JFrame {
             if (cola.buscar(i).getFecha().equals("Miercoles")) {
                 for (int j = 6; j < 9; j++) {
                     if (cola.buscar(i).getHora().equals(botones.get(j).getText())) {
-                       //botones.get(j).setEnabled(false); 
                        reservas.set(j, 1);
                     } else {
-                       //botones.get(j).setBackground(Color.GREEN); 
                         cont++;
                     }
                 }
@@ -123,32 +117,26 @@ public final class FrmHorario extends javax.swing.JFrame {
             if (cola.buscar(i).getFecha().equals("Jueves")) {
                 for (int j = 9; j < 12; j++) {
                     if (cola.buscar(i).getHora().equals(botones.get(j).getText())) {
-                       //botones.get(j).setEnabled(false); 
                        reservas.set(j, 1);
                     } else {
-                       //botones.get(j).setBackground(Color.GREEN); 
                         cont++;
                     }
                 }
             }
             if (cola.buscar(i).getFecha().equals("Viernes")) {
                 for (int j = 12; j < 15; j++) {
-                    if (cola.buscar(i).getHora().equals(botones.get(j).getText())) {
-                       //botones.get(j).setEnabled(false); 
+                    if (cola.buscar(i).getHora().equals(botones.get(j).getText())) { 
                        reservas.set(j, 1);
                     } else {
-                       //botones.get(j).setBackground(Color.GREEN); 
                         cont++;
                     }
                 }
             }
             if (cola.buscar(i).getFecha().equals("Sábado")) {
                 for (int j = 15; j < 18; j++) {
-                    if (cola.buscar(i).getHora().equals(botones.get(j).getText())) {
-                       //botones.get(j).setEnabled(false); 
+                    if (cola.buscar(i).getHora().equals(botones.get(j).getText())) { 
                        reservas.set(j, 1);
                     } else {
-                       //botones.get(j).setBackground(Color.GREEN); 
                         cont++;
                     }
                 }

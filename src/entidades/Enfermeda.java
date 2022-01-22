@@ -51,9 +51,79 @@ public class Enfermeda {
         CIRUGIA.add("Cirugia oncologica");
         CIRUGIA.add("Cirugia vascular");
 
-        PSIQUIATRIA.add("Salud Mental");
-        PSIQUIATRIA.add("");
-        PSIQUIATRIA.add("");
+        PSIQUIATRIA.add("Salus Mental");
+        PSIQUIATRIA.add("Problemas Emocionales");
+        PSIQUIATRIA.add("Problemas De Comportamiento");
+        
+        CARDIOLOGIA.add("Tratamiendo del corazon");
+        CARDIOLOGIA.add("Tratamiendo de los vasos sanguineos");
+        CARDIOLOGIA.add("Enfermdad cardiovascular");
+        CARDIOLOGIA.add("Posr operativo");
+        
+        DERMATOLOGIA.add("Los desordenes de la piel en  cabello");
+        DERMATOLOGIA.add("Tratamientos a uñas");
+        DERMATOLOGIA.add("Tratamientos a membranas mucosas adyacentes");
+        DERMATOLOGIA.add("Tratamientos a cáncer de piel");
+        DERMATOLOGIA.add("Tratamientos a tumores");
+        DERMATOLOGIA.add("Tratamientos a enfermedades inflamatorias de la piel");
+        DERMATOLOGIA.add("Tratamientos a enfermedades infecciosas");
+        
+        ENDOCRINOLOGIA.add("Trata el sistema endocrino");
+        ENDOCRINOLOGIA.add("Trata las glándulas");
+        ENDOCRINOLOGIA.add("Trata diabetes");
+        ENDOCRINOLOGIA.add("Trata tiroides");
+        
+        GASTROENTEROLOGIA.add("Problemas de sistema digestivo");
+        GASTROENTEROLOGIA.add("Problemas de la vesicula biliar");
+        GASTROENTEROLOGIA.add("Problemas de estomago");
+        GASTROENTEROLOGIA.add("Problemas de los intestinos");
+       
+        INFECTOLOGIA.add("Trata el sistema respiratorio ");
+        INFECTOLOGIA.add("Trata el asma ");
+        INFECTOLOGIA.add("Trata alergias de comidas");
+        INFECTOLOGIA.add("Trata drogas ");
+        INFECTOLOGIA.add("Trata deficiencias inmunes ");   
+        INFECTOLOGIA.add("Trata enfermedades del pulmon "); 
+        INFECTOLOGIA.add("Trata infecciones la gripe porcina ");
+        INFECTOLOGIA.add("Trata sida/VIH ");
+        
+        NEFROLOGIA.add("Tratan los riñones");
+        NEFROLOGIA.add("Tratan fallo renal");
+        
+        OFTALMOLOGIA.add("Tratan las cataratas");
+        OFTALMOLOGIA.add("Tratan las glaucoma");
+        OFTALMOLOGIA.add("Cirugía de ojo");
+        
+        OTORRINOLARINGOLOGIA.add("Problemas de oido");
+        OTORRINOLARINGOLOGIA.add("Problemas de Nariz");
+        OTORRINOLARINGOLOGIA.add("Problemas de garganta");
+        OTORRINOLARINGOLOGIA.add("Problemas incluyendo sinusitis");
+        OTORRINOLARINGOLOGIA.add("Alergias");
+        OTORRINOLARINGOLOGIA.add("Problemas de cuello");
+         
+        NEUMOLOGIA.add("Sistema cardiaco pulmonar");
+        NEUMOLOGIA.add("Desordenes de respiracion");
+        NEUMOLOGIA.add("Alergias severas");
+        NEUMOLOGIA.add("Problemas de pulmones");
+        NEUMOLOGIA.add("Enfermedad respiratoria");
+        
+        NEUROLOGIA.add("Trata el cerebro");
+        NEUROLOGIA.add("Trata la espina vertebral");
+        NEUROLOGIA.add("Trata los nervios");
+        NEUROLOGIA.add("Trata el cerebro");
+        NEUROLOGIA.add("Trata enfermedad de Parkinsons");
+        NEUROLOGIA.add("Trata esclerosis múltiple");
+        NEUROLOGIA.add("Neuropatía");
+        NEUROLOGIA.add("Problemas de cerebro");
+        
+        RADIOLOGIA.add("Pruebas de rayos X");
+        RADIOLOGIA.add("Tomografia computarizadas");
+        RADIOLOGIA.add("Resonancias Magneticas");
+        
+        ANEGTESIOLOGIA.add("Inducir anestesia");        
+        ANEGTESIOLOGIA.add("Monitoreo de señales vitales");
+        ANEGTESIOLOGIA.add("Arresto cardíaco");
+        ANEGTESIOLOGIA.add("Problemas súbitos de respiración");
 
         for (int i = 0; i < PEDRIATRIA.size(); i++) {
             general.add(PEDRIATRIA.get(i));

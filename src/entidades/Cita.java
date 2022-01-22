@@ -9,6 +9,7 @@ package entidades;
  * @author HP
  */
 public class Cita {
+    private int id;
     private String fecha;
     private String hora;
     private String motivo;
@@ -19,13 +20,14 @@ public class Cita {
     public Cita() {
     }
 
-    public Cita(String fecha, String hora, String motivo, String sintomas, Paciente paciente,Doctor doctor) {
+    public Cita(int id,String fecha, String hora, String motivo, String sintomas, Paciente paciente,Doctor doctor) {
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
         this.sintomas = sintomas;
         this.paciente = paciente;
         this.doctor = doctor;
+        this.id = id;
     }
     
     public void setFecha(String fecha){
@@ -75,10 +77,15 @@ public class Cita {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
-    
-    
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+      
     
 }
     

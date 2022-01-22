@@ -4,6 +4,9 @@
  */
 package formulario;
 
+import Conexion.Metodos;
+import entidades.Cita;
+import javax.swing.JOptionPane;
 import modeloTabla.TablaRegistro;
 
 /**
@@ -12,14 +15,33 @@ import modeloTabla.TablaRegistro;
  */
 public class FrmListado extends javax.swing.JFrame {
     TablaRegistro tma;
+    Cita cita;
     /**
      * Creates new form FrmListado
      */
     public FrmListado() {
         initComponents();
         setLocationRelativeTo(null);
+        actualizar();
+    }
+    
+    public void actualizar(){
         tma = new TablaRegistro();
         jTable1.setModel(tma);
+    }
+    
+    public void selecionado(){
+        int i = jTable1.getSelectedRow();
+        if(i==-1){
+            JOptionPane.showMessageDialog(null,"Seleccione una fila de la tabla","Mensaje",2);
+        }else{
+            cita = Principal.lista.obtenerCita(i);
+            Metodos.eliminarCita(cita);
+            Principal.lista.eliminarCita(i);
+            JOptionPane.showMessageDialog(null,"Se eliminó correctamente el registro","Mensaje",1);
+            actualizar();
+            
+        }
     }
 
     /**
@@ -66,6 +88,11 @@ public class FrmListado extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
         jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton3.setText("Salir");
@@ -146,6 +173,10 @@ public class FrmListado extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new FrmBoleta().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        selecionado();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

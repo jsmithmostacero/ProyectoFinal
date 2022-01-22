@@ -425,8 +425,8 @@ public class ReservaCita extends javax.swing.JFrame {
             sintomas = txtSintomas.getText();
             doctor = data.getDoctores(especialista);
             paciente = new Paciente(nombre, apellido, dni, telefono, direccion, email, fechaNacimiento, sexo);
-            cita = new Cita(fecha, hora, motivo, sintomas, paciente, doctor);
-            //Principal.cola.encolar(cita);
+            cita = new Cita(Principal.id,fecha, hora, motivo, sintomas, paciente, doctor);
+            Principal.id++;
             Ordenar o = new Ordenar(cita, pos);
             Principal.arbol.insertar(o);
             Principal.arbol.inOrden();

@@ -5,6 +5,7 @@
 package formulario;
 
 import ArbolBinario.ArbolBinario;
+import Conexion.Metodos;
 import Conexion.ReportClass;
 import colas.Cola;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -29,7 +30,9 @@ public class Principal extends javax.swing.JFrame {
     public static ListaEnlazada lista;
     public static ArbolBinario arbol;
     private Doctor doctor;
-    int color=1;
+    int color = 1;
+    public static int id = 0;
+
     /**
      * Creates new form Principal
      */
@@ -40,69 +43,71 @@ public class Principal extends javax.swing.JFrame {
         cola = new Cola();
         lista = new ListaEnlazada();
         arbol = new ArbolBinario();
+        llenarInfo();
+
+    }
+
+    public void llenarInfo() {
         Paciente p = new Paciente("Jonathan Smith", "Mostacero Camacho", "72697001", "928469798",
-                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+                "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
         Paciente p1 = new Paciente("Roxana Maria", "Perez Camacho", "72697002", "928469798",
-                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
-        Paciente p2 = new Paciente("Jose Benavives", "CACA Camacho", "72697000", "928469798",
-                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
-        Paciente p3 = new Paciente("Michel Alexnader", "CACA Camacho", "72697003", "928469798",
-                 "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
-        Cita c = new Cita("Lunes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p,doctor);
-        Cita cd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p1,doctor);
-        Cita csd = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p2,doctor);
-        Cita ck = new Cita("Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p3,doctor);
-        //cola.encolar(c);
-        //cola.encolar(cd);
-        
-        lista.agregarCitaFinal(cd);
+                "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        Paciente p2 = new Paciente("Jose Benavives", "Marchena Camacho", "72697000", "928469798",
+                "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        Paciente p3 = new Paciente("Michel Alexnader", "Ramirez Camacho", "72697003", "928469798",
+                "Hipolito Unanue", "jsmithmoatacero@gmail.com", "30/10/2002", "Maculino");
+        Cita c = new Cita(0, "Lunes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p, doctor);
+        Cita cd = new Cita(1, "Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p1, doctor);
+        Cita csd = new Cita(2, "Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p2, doctor);
+        Cita ck = new Cita(3, "Viernes", "8:30 a.m-9:00 a.m", "Tos", "Dolor de pecho", p3, doctor);
+        id = 4;
         lista.agregarCitaFinal(c);
+        lista.agregarCitaFinal(cd);
         lista.agregarCitaFinal(csd);
         lista.agregarCitaFinal(ck);
         Ordenar oe = new Ordenar(cd, 14);
         Ordenar od = new Ordenar(cd, 2);
-        Ordenar d= new Ordenar(c, 1);
+        Ordenar d = new Ordenar(c, 1);
         Ordenar odee = new Ordenar(cd, 13);
-//        System.out.println(Metodos.insertarCita(cd));
-//        System.out.println(Metodos.insertarCita(c));
-//        System.out.println(Metodos.insertarCita(ck));
-//        System.out.println(Metodos.insertarCita(csd));
         arbol.insertar(oe);
         arbol.insertar(od);
         arbol.insertar(d);
         arbol.insertar(odee);
         arbol.inOrden();
         cola = Principal.arbol.colas();
+        Metodos.eliminar();
+        Metodos.insertarCita(c);
+        Metodos.insertarCita(cd);
+        Metodos.insertarCita(csd);
+        Metodos.insertarCita(ck);
     }
-    
-    public void CambiarImagen(int nu){
+
+    public void CambiarImagen(int nu) {
         try {
-            
-             ImageIcon icon=null;
-        if(nu!=0){
-            
-            icon = new ImageIcon("src/img/129834.png");
-            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
-                    jMenuItem6.setText("Cambiar a Oscuro");
+
+            ImageIcon icon = null;
+            if (nu != 0) {
+
+                icon = new ImageIcon("src/img/129834.png");
+                javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
+                jMenuItem6.setText("Cambiar a Oscuro");
                 SwingUtilities.updateComponentTreeUI(this);
                 this.pack();
-        }else{
-            icon = new ImageIcon("src/img/img.png");
-            jMenuItem6.setText("Cambiar a Blanco");
-             javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
+            } else {
+                icon = new ImageIcon("src/img/img.png");
+                jMenuItem6.setText("Cambiar a Blanco");
+                javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
                 SwingUtilities.updateComponentTreeUI(this);
                 this.pack();
-            
-        }
-        jMenuItem6.setIcon(icon);
-            
+
+            }
+            jMenuItem6.setIcon(icon);
+
         } catch (UnsupportedLookAndFeelException e) {
-            
+
         }
 
-      
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,10 +233,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        if(cola!=null){
+        if (cola != null) {
             new FrmEmpezar().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null,"No hay registros de citas","Mensaje",2);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros de citas", "Mensaje", 2);
         }
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -241,9 +246,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
+
         try {
-             ReportClass.generarReporte("cita");
+            ReportClass.generarReporte("cita");
 
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
@@ -253,9 +258,9 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
 
         color++;
-        if(color%2==0){
+        if (color % 2 == 0) {
             CambiarImagen(0);
-        }else{
+        } else {
             CambiarImagen(1);
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -263,26 +268,6 @@ public class Principal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

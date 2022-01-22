@@ -67,7 +67,7 @@ public class ListaEnlazada {
         cantidad++;
     }
 
-    //ELIMINAR ARTICULO
+    //ELIMINAR CITA
     public void eliminarCita(int pos) {
         if (pos == 0) {
             cabeza = cabeza.siguiente;

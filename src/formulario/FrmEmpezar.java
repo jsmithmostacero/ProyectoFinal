@@ -17,7 +17,6 @@ import javax.swing.Timer;
  */
 public class FrmEmpezar extends javax.swing.JFrame {
 
-    //private Cola cola = Principal.arbol.colas();
     Cita cita;
     String mensaje = "Reserva cita\n";
     private Timer tiempo;
